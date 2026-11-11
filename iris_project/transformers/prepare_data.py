@@ -1,25 +1,22 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-# Import Mage's decorators only if they aren't already loaded or if mage_ai is available
 try:
     if 'transformer' not in globals():
         from mage_ai.data_preparation.decorators import transformer
     if 'test' not in globals():
         from mage_ai.data_preparation.decorators import test
 except ImportError:
-    # Allows the block file to be imported outside Mage (e.g. in standalone pytest/CI)
+    # fallback definitions when imported in standalone pytest
     def transformer(fn):
         return fn
     def test(fn):
         return fn
 
 
-# transformer marks this as a step that changes data coming from an earlier block
-# 'df' is the 150-row table returned by load_iris, passed in automatically by Mage
-# It splits the data 80/20 and adds a 'split' column labelling each row train or test
 @transformer
 def transform(df, *args, **kwargs):
+    # 80/20 train/test split
     train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
 
     train_df = train_df.copy()
@@ -32,9 +29,6 @@ def transform(df, *args, **kwargs):
     return result
 
 
-# Runs right after transform finishes, using its returned table as 'output'
-# Checks that the new 'split' column was actually created
-# If it's missing, the block fails and train_model never runs
 @test
 def test_output(output, *args):
     assert 'split' in output.columns, 'split column missing'
