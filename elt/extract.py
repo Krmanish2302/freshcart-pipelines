@@ -133,3 +133,4 @@ def pincodes(session, pins, mock=False):
             time.sleep(0.2)                    # be polite to a free public API
         out.append({"pincode": pin, "response": resp})
     return out
+

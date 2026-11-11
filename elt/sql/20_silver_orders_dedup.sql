@@ -9,3 +9,4 @@ QUALIFY ROW_NUMBER() OVER (
           PARTITION BY order_id
           ORDER BY updated_at DESC, ingest_seq DESC
         ) = 1;
+

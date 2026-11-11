@@ -45,3 +45,4 @@ VALUES
   (s.order_id, s.order_date, s.cust_id, s.email, s.tier, s.multiplier, s.amount, s.currency,
    s.fx_rate, s.amount_inr, s.loyalty_points, s.is_high_value, s.city, s.state, s.region,
    s.updated_at, s.row_hash, CURRENT_TIMESTAMP());
+

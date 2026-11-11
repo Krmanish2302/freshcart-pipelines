@@ -23,3 +23,4 @@ WHEN MATCHED AND (t.city <> s.city OR t.state <> s.state OR NVL(t.region,'') <> 
 WHEN NOT MATCHED
   THEN INSERT (pincode, city, state, region, updated_at)
        VALUES (s.pincode, s.city, s.state, s.region, CURRENT_TIMESTAMP());
+

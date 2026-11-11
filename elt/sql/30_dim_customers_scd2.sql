@@ -20,3 +20,4 @@ SELECT cust_id, email, tier, valid_from,
        LEAD(valid_from) OVER (PARTITION BY cust_id ORDER BY valid_from) IS NULL AS is_current
 FROM events
 WHERE cust_id IS NOT NULL AND valid_from IS NOT NULL;
+

@@ -64,3 +64,4 @@ def pincode_response(pin):
     return [{"Message": "Number of pincode(s) found:1", "Status": "Success",
              "PostOffice": [{"Name": district, "District": district, "State": state,
                              "Country": "India", "Pincode": pin}]}]
+

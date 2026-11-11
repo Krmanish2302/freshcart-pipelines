@@ -88,3 +88,4 @@ CREATE TABLE IF NOT EXISTS ops.run_log (
   run_id STRING, step STRING, status STRING, detail STRING,
   logged_at TIMESTAMP_LTZ DEFAULT CURRENT_TIMESTAMP()
 );
+

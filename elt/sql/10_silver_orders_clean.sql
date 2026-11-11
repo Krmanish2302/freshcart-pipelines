@@ -49,7 +49,7 @@ SELECT *,
     IFF(order_date IS NULL, 'unparseable_date', NULL),
     IFF(updated_at IS NULL, 'unparseable_updated_at', NULL),
     IFF(amount <= 0, 'non_positive_amount', NULL),         -- NULL amount is allowed (flagged below)
-    IFF(currency NOT IN ('INR', 'USD'), 'unsupported_currency', NULL) -- Task B3: validate allowed currencies
+    IFF(currency NOT IN ('INR', 'USD'), 'unsupported_currency', NULL) -- only INR and USD orders accepted
   ) AS reasons
 FROM typed;
 
@@ -72,3 +72,4 @@ WHERE ARRAY_SIZE(c.reasons) > 0
           AND EQUAL_NULL(q.row_data:updated_at::TIMESTAMP_NTZ, c.updated_at))
 QUALIFY ROW_NUMBER() OVER (PARTITION BY c.source, c.order_id, c.updated_at
                            ORDER BY c.ingest_seq DESC) = 1;
+

@@ -152,7 +152,7 @@ def quality_checks(conn, strict):
         (f"quarantine rate (max {max_q:.0%})",
          "SELECT COALESCE(COUNT_IF(ARRAY_SIZE(reasons) > 0) / NULLIF(COUNT(*), 0), 0) FROM silver.orders_checked",
          lambda v: float(v) <= max_q, "warn"),
-        # Task B5: 6th data-quality check added
+        # check that currency conversion populated INR amount for all non-null orders
         ("gold orders with invalid FX conversion (amount not null but amount_inr is null)",
          "SELECT COUNT_IF(amount IS NOT NULL AND amount_inr IS NULL) FROM gold.fct_orders",
          lambda v: v == 0, "fail"),
@@ -175,3 +175,4 @@ if __name__ == "__main__":
     except Exception as exc:
         logging.getLogger("pipeline").error("pipeline failed: %s", exc)
         sys.exit(1)
+

@@ -35,3 +35,4 @@ filled AS (
 SELECT currency, rate_date, rate_to_inr, is_carried_forward FROM filled
 UNION ALL
 SELECT 'INR', d, 1.0, FALSE FROM spine;
+

@@ -80,3 +80,4 @@ def load_file(conn, local_path, table, stage_dir):
     loaded = sum(int(r[3]) for r in rows if len(r) > 3 and str(r[1]).startswith(("LOADED", "PARTIALLY")))
     log.info("%s: %d rows copied into %s", Path(local_path).name, loaded, table)
     return loaded
+
