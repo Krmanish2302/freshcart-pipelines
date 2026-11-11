@@ -1,0 +1,29 @@
+# Environment and secrets
+.env
+*.env
+*.p8
+*.pem
+
+# Model artifacts and exported outputs
+*.pkl
+*.csv
+
+# Logs and runtime caches
+mage.log
+tunnel.log
+*.log
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual environments
+venv/
+.venv/
+mage_env/
+
+# IDE / OS specific
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
