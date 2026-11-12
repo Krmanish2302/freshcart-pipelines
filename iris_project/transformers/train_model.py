@@ -1,10 +1,16 @@
 import joblib
 from sklearn.tree import DecisionTreeClassifier
 
-if 'transformer' not in globals():
-    from mage_ai.data_preparation.decorators import transformer
-if 'test' not in globals():
-    from mage_ai.data_preparation.decorators import test
+try:
+    if 'transformer' not in globals():
+        from mage_ai.data_preparation.decorators import transformer
+    if 'test' not in globals():
+        from mage_ai.data_preparation.decorators import test
+except ImportError:
+    def transformer(fn):
+        return fn
+    def test(fn):
+        return fn
 
 FEATURES = ['sepal length (cm)', 'sepal width (cm)',
             'petal length (cm)', 'petal width (cm)']
